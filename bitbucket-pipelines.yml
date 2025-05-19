@@ -1,0 +1,30 @@
+pipelines:
+  default:
+    - step:
+        name: Sync to GitHub
+        image: atlassian/default-image:2
+        script:
+          - echo "🔧 Configuring Git user..."
+          - git config --global user.email "tambesupriyad@gmail.com"
+          - git config --global user.name "Supriya Tambe"
+
+          - echo "📦 Cloning Bitbucket repository..."
+          - git clone https://supriya171-admin:${BITBUCKET_TOKEN}@bitbucket.org/supriya171/citibitbucketrepo.git
+
+          - echo "📂 Switching into repo directory..."
+          - cd citibitbucketrepo
+
+          - echo "🔗 Adding GitHub remote..."
+          - git remote add github https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_USERNAME}/CitiGithubRepo1.git
+          - rm -rf */test-results */failsafe-reports */test-reports */TestResults **/surefire-reports 
+
+          - echo "🚀 Pushing code to GitHub..."
+          - |
+            if git push github; then
+              echo "✅ Code pushed to GitHub successfully!"
+            else
+              echo "❌ Git push failed. Please check credentials or remote status."
+              exit 1
+            fi
+
+          - echo "🎉 Pipeline finished successfully!"
