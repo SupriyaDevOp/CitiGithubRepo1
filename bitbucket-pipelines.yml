@@ -5,6 +5,7 @@ pipelines:
         image: atlassian/default-image:2
         script:
           - echo "🔧 Configuring Git user..."
+          - git config --global push.default simple
           - git config --global user.email "tambesupriyad@gmail.com"
           - git config --global user.name "Supriya Tambe"
 
