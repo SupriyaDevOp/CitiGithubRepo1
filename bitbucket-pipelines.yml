@@ -10,7 +10,7 @@ pipelines:
           - git config --global user.name "Supriya Tambe"
 
           - echo "📦 Cloning Bitbucket repository..."
-          - git clone https://supriya171-admin:${BITBUCKET_TOKEN}@bitbucket.org/supriya171/citibitbucketrepo.git
+          - git clone https://supriya171-admin:${BITBUCKET_TOKEN}@bitbucket.org/supriya171/new-citi-test.git
 
           - echo "📂 Switching into repo directory..."
           - cd citibitbucketrepo
